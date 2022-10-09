@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeHelp Week-01</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="headline">My Website</div>
+      <div class="list">
+        <div class="item">Item1</div>
+        <div class="item">Item2</div>
+        <div class="item">Item3</div>
+        <div class="item">Item4</div>
+      </div>
+      <!-- 漢堡圖示 -->
+      <div class="icon">
+        <img src="./picture/hamburger.png" class="hamburger" alt="" />
+      </div>
+    </div>
+    <!-- 歡迎語-->
+    <div class="big-title">
+      <div class="text">Welcome to My Home</div>
+    </div>
+    <!-- 主要內容 -->
+    <main>
+      <div class="main-left"></div>
+      <div class="main-middle">
+        <div class="middle-up">
+          <!--  
+          <div class="image-promotion">
+            <img src="./picture/lake.JPG" class="image-first" alt="" />
+            <div>Promotion1</div>
+          </div>
+          <div class="image-promotion">
+            <img src="./picture/lake.JPG" class="image-first" alt="" />
+            <div>Promotion2</div>
+          </div>
+          -->
+        </div>
+        <div class="middle-down">
+          <!--  
+          <div class="image-title">
+            <img src="./picture/lake.JPG" class="image-second" alt="" />
+            <div>title1</div>
+          </div>
+          <div class="image-title">
+            <img src="./picture/lake.JPG" class="image-second alt="" />
+            <div>title2</div>
+          </div>
+          <div class="image-title">
+            <img src="./picture/lake.JPG" class="image-second alt="" />
+            <div>title3</div>
+          </div>
+          <div class="image-title">
+            <img src="./picture/lake.JPG" class="image-second alt="" />
+            <div>title4</div>
+          </div>
+          <div class="image-title">
+            <img src="./picture/lake.JPG" class="image-second alt="" />
+            <div>title5</div>
+          </div>
+          <div class="image-title">
+            <img src="./picture/lake.JPG" class="image-second alt="" />
+            <div>title6</div>
+          </div>
+          <div class="image-title">
+            <img src="./picture/lake.JPG" class="image-second alt="" />
+            <div>title7</div>
+          </div>
+          <div class="image-title">
+            <img src="./picture/lake.JPG" class="image-second alt="" />
+            <div>title8</div>
+          </div>
+          -->
+        </div>
+      </div>
+      <div class="main-right"></div>
+    </main>
+    <script>
+      fetch(
+        "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json"
+      )
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          // console.log(data);
+          clist = data.result.results;
+          // console.log(clist);                  // 陣列資料
+          // 顯示景點資料中的第一張圖片和景點的名稱
+          // console.log(clist[0].file);
+
+          // 過濾資料，只留第一張圖片
+          for (let i = 0; i < clist.length; i++) {
+            clist[i].file = clist[i].file.replace(".JPG", ".jpg");
+            clist[i].file = clist[i].file.split(".jpg")[0];
+            clist[i].file += ".jpg";
+            // console.log(clist[i].file);       // https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000848.jpg
+            // console.log(clist[i].stitle);
+          }
+          // 前兩筆資料放置，後續資料放置
+          for (let i = 0; i < clist.length; i++) {
+            if (i < 2) {
+              setImagePromotion(clist[i].file, clist[i].stitle);
+            } else if (i < 10) {
+              setImageTitle(clist[i].file, clist[i].stitle);
+            }
+          }
+        });
+
+      // 務必使用 document.createElement() 與 appendChild()
+      // 第一、第二筆資料，圖片、景點名稱放置
+      function setImagePromotion(file, stitle) {
+        // image-promotion區塊
+        // <div class="image-promotion">
+        //    <img src="./picture/lake.JPG" class="image-first" alt="" />
+        //    <div>Promotion1</div>
+        // </div>;
+
+        // <div class="image-promotion">
+        let middle_upImagePromotion = document.createElement("div");
+        middle_upImagePromotion.setAttribute("class", "image-promotion");
+        // middle_upImagePromotion.className = "image-promotion";
+
+        // <img src="./picture/lake.JPG" class="image-first" alt="" />
+        let middle_upImage = document.createElement("img");
+        middle_upImage.setAttribute("src", file);
+        middle_upImage.setAttribute("class", "image-first");
+
+        // <div>Promotion1</div>
+        let middle_upContent = document.createElement("div");
+        middle_upContent.innerText = stitle;
+
+        // 找出要塞進的起始div 把資料塞進去
+        // appendChild() => 找出父層，一層一層塞資料    // middle-up
+        let middle_upDiv = document.querySelector(".middle-up");
+        middle_upDiv.appendChild(middle_upImagePromotion);
+        middle_upImagePromotion.appendChild(middle_upImage);
+        middle_upImagePromotion.appendChild(middle_upContent);
+      }
+
+      function setImageTitle(file, stitle) {
+        // <div class="image-title">
+        //   <img src="./picture/lake.JPG" class="image-second" alt="" />
+        //   <div>title1</div>
+        // </div>;
+
+        // <div class="image-title">
+        let middle_downTitle = document.createElement("div");
+        middle_downTitle.setAttribute("class", "image-title");
+
+        // <img src="./picture/lake.JPG" class="image-second" alt="" />
+        let middle_downImg = document.createElement("img");
+        middle_downImg.setAttribute("src", file);
+        middle_downImg.setAttribute("class", "image-second");
+
+        // <div>Title1</div>
+        let middle_downContent = document.createElement("div");
+        middle_downContent.innerHTML = stitle;
+
+        // 找出要塞進的起始div 把資料塞進去   // middle-down
+        let middle_downDiv = document.querySelector(".middle-down");
+        middle_downDiv.appendChild(middle_downTitle);
+        middle_downTitle.appendChild(middle_downImg);
+        middle_downTitle.appendChild(middle_downContent);
+      }
+    </script>
+  </body>
+</html>
