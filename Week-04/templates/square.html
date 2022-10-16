@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>首頁</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css')}}"
+    />
+    <!-- {{ url_for('static', filename='style.css')}}  CSS格式放在static資料夾裡面 -->
+  </head>
+  <body>
+    <div class="big-title">
+      <span>正整數平方計算結果</span>
+    </div>
+    <div class="main-content">
+      <div class="text-01">{{ result }}</div>
+    </div>
+  </body>
+</html>

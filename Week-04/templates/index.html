@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>首頁</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css')}}"
+    />
+    <!-- {{ url_for('static', filename='style.css')}}  CSS格式放在static資料夾裡面 -->
+  </head>
+  <body>
+    <div class="big-title">
+      <span>歡迎光臨，請輸入帳號密碼</span>
+    </div>
+    <div class="main-content">
+      <form action="/signin" method="POST">
+        <div class="text-01">登入系統</div>
+        <div class="text-02">
+          帳號 <input class="input-block" type="text" name="id" />
+          <br />
+          <!-- type = "password" 可以讓輸入的內容 **** 呈現 -->
+          密碼 <input class="input-block" type="password" name="password" />
+          <br />
+          <button class="btn">登入</button>
+        </div>
+      </form>
+    </div>
+    <div class="main-content">
+      <form action="/square/">
+        <div class="text-01">計算正整數的平方</div>
+        <div class="text-02">正整數 <input type="text" name="num" /></div>
+        <button class="btn">計算</button>
+      </form>
+    </div>
+  </body>
+</html>
