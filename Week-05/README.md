@@ -13,8 +13,8 @@ CREATE TABLE member(   </br>
     time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP  </br>
 );   
 INSERT INTO member(id,name,username,password,follower_count) 
-VALUES(1,'Ian','test','test',50);   </br>
-
+VALUES(1,'Ian','test','test',50);   
+</br>
 ![image](https://user-images.githubusercontent.com/104882761/197391543-ef5c52e2-32c3-4eda-a378-19d61f84ebc3.png)
 
 
@@ -32,6 +32,7 @@ VALUES ('Ken','dog','black',10);
 </br>
 
 SELECT * FROM member;
+</br>
 ![image](https://user-images.githubusercontent.com/104882761/197391735-42bd1ee2-5661-426e-8de6-8c4aa9d7ff5a.png)
 </br>
 
