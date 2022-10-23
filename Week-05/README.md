@@ -4,7 +4,7 @@ SHOW DATABASES;  </br>
 CREATE DATABASE website;  </br>
 USE website;  </br>
 SHOW TABLES;  </br>
-CREATE TABLE member(  </br>     
+CREATE TABLE member(    
 	id BIGINT PRIMARY KEY AUTO_INCREMENT,  </br>       
     name VARCHAR(255) NOT NULL,  </br>
     username VARCHAR(255) NOT NULL,  </br>
