@@ -5,7 +5,7 @@ CREATE DATABASE website;  </br>
 USE website;  </br>
 SHOW TABLES;  </br>
 CREATE TABLE member(    
-	id BIGINT PRIMARY KEY AUTO_INCREMENT,  </br>       
+	id BIGINT PRIMARY KEY AUTO_INCREMENT,        
     name VARCHAR(255) NOT NULL,  </br>
     username VARCHAR(255) NOT NULL,  </br>
     password VARCHAR(255) NOT NULL,  </br>
