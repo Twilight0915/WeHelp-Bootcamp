@@ -12,8 +12,6 @@ CREATE TABLE member(   </br>
     follower_count INT UNSIGNED NOT NULL DEFAULT 0,  </br>
     time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP  </br>
 );   
-</br>
-</br>
 INSERT INTO member(id,name,username,password,follower_count) 
 VALUES(1,'Ian','test','test',50);   </br>
 
