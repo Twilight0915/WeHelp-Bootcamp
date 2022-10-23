@@ -1,10 +1,9 @@
 # Week-05 Assignment 要求三、四部分
 
-SHOW DATABASES; 
-</br>
-CREATE DATABASE website;
-USE website;
-SHOW TABLES;
+SHOW DATABASES;  </br>
+CREATE DATABASE website;  </br>
+USE website;  </br>
+SHOW TABLES;  </br>
 CREATE TABLE member(
 	id BIGINT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
@@ -12,9 +11,9 @@ CREATE TABLE member(
     password VARCHAR(255) NOT NULL,
     follower_count INT UNSIGNED NOT NULL DEFAULT 0,
     time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
+);   </br>
 INSERT INTO member(id,name,username,password,follower_count) 
-VALUES(1,'Ian','test','test',50);
+VALUES(1,'Ian','test','test',50);   </br>
 
 ![image](https://user-images.githubusercontent.com/104882761/197391543-ef5c52e2-32c3-4eda-a378-19d61f84ebc3.png)
 
