@@ -11,7 +11,9 @@ CREATE TABLE member(
     password VARCHAR(255) NOT NULL,
     follower_count INT UNSIGNED NOT NULL DEFAULT 0,
     time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-);   </br>
+);   
+</br>
+</br>
 INSERT INTO member(id,name,username,password,follower_count) 
 VALUES(1,'Ian','test','test',50);   </br>
 
@@ -29,12 +31,12 @@ VALUES ('Brian','cat','white',20);
 
 INSERT INTO member(name,username,password,follower_count) 
 VALUES ('Ken','dog','black',10);
-
-
-
-
+</br>
 
 SELECT * FROM member;
+![image](https://user-images.githubusercontent.com/104882761/197391735-42bd1ee2-5661-426e-8de6-8c4aa9d7ff5a.png)
+</br>
+
 SELECT * FROM member ORDER BY time DESC;
 SELECT * FROM(
 	SELECT *, ROW_NUMBER() OVER (ORDER BY time DESC) AS ROW_ID FROM member
