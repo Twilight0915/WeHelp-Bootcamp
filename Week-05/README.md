@@ -1,6 +1,7 @@
 # Week-05 Assignment 要求三、四部分
 
-SHOW DATABASES;
+SHOW DATABASES; 
+</br>
 CREATE DATABASE website;
 USE website;
 SHOW TABLES;
@@ -15,6 +16,9 @@ CREATE TABLE member(
 INSERT INTO member(id,name,username,password,follower_count) 
 VALUES(1,'Ian','test','test',50);
 
+![image](https://user-images.githubusercontent.com/104882761/197391543-ef5c52e2-32c3-4eda-a378-19d61f84ebc3.png)
+
+
 INSERT INTO member(id,name,username,password,follower_count) 
 VALUES (2,'Tom','apple','red',40);
 
@@ -27,7 +31,6 @@ VALUES ('Brian','cat','white',20);
 INSERT INTO member(name,username,password,follower_count) 
 VALUES ('Ken','dog','black',10);
 
-![image](https://user-images.githubusercontent.com/104882761/197384890-30b55847-529c-4453-a35e-fbc1ab78ec81.png)
 
 
 
