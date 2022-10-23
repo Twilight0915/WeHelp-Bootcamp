@@ -37,6 +37,7 @@ SELECT * FROM member;
 </br>
 
 SELECT * FROM member ORDER BY time DESC;
+</br>
 ![image](https://user-images.githubusercontent.com/104882761/197391984-b7dce0a0-a10e-4de7-95af-a1ef054e9e7d.png)
 </br>
 
