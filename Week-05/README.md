@@ -36,15 +36,21 @@ SELECT * FROM member;
 </br>
 
 SELECT * FROM member ORDER BY time DESC;
+![image](https://user-images.githubusercontent.com/104882761/197391984-b7dce0a0-a10e-4de7-95af-a1ef054e9e7d.png)
+</br>
+
 SELECT * FROM(
 	SELECT *, ROW_NUMBER() OVER (ORDER BY time DESC) AS ROW_ID FROM member
 ) time_desc_table WHERE ROW_ID >=2 and ROW_ID <=4;
-
+</br>
 SELECT * FROM member WHERE username='test';
+</br>
 SELECT * FROM member WHERE username='test' and password='test';
+</br>
 UPDATE member SET name='test2' WHERE username='test';
-UPDATE member SET name='Ian' WHERE username='test';
-
+</br>
 SELECT COUNT( * ) FROM member;
+</br>
 SELECT SUM(follower_count) FROM member;
+</br>
 SELECT AVG(follower_count) FROM member;
