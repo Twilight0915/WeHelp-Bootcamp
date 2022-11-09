@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>會員頁面</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css')}}"
+    />
+    <!-- {{ url_for('static', filename='style.css')}}  CSS格式放在static資料夾裡面 -->
+  </head>
+  <body>
+    <div class="big-title">
+      <span>歡迎光臨，這是會員頁</span>
+    </div>
+    <div class="main-content">
+      <div class="text-02" id="welcome_user">{{ name }}，歡迎登入系統</div>
+    </div>
+    <!-- 使⽤者點擊，連線到【登出功能網址】，在 Flask
+         Session 中紀錄使⽤者狀態為未登入，並導向【⾸⾴】 -->
+    <form action="/signout" methods="GET">
+      <div class="text_center">
+        <a href="/signout">登出系統</a>
+      </div>
+    </form>
+
+    <!-- 查詢會員姓名 -->
+    <div class="main-content">
+      <span class="text-01">查詢會員姓名</span>
+    </div>
+    <!-- input的值傳入JS裡面 -->
+    <div class="text_center" style="margin: 10px">
+      <input type="text" class="btn" id="username_search" />
+      <button class="btn" onclick="searchMember()">查詢</button>
+    </div>
+    <!-- 顯示會員姓名 -->
+    <div class="text_center" id="search_result" style="visibility: hidden">
+      顯示姓名位置
+    </div>
+    <!-- 更新姓名 -->
+    <div class="main-content">
+      <span class="text-01">更新我的姓名</span>
+    </div>
+    <!-- input -->
+    <form class="text_center" style="margin: 10px">
+      <input
+        type="text"
+        class="btn"
+        id="name_update"
+        placeholder="輸入新的姓名"
+      />
+      <button type="reset" class="btn" onclick="updateMember()">更新</button>
+    </form>
+    <!-- 顯示更新結果 -->
+    <div class="text_center" id="update_result" style="visibility: hidden">
+      顯示更新結果位置
+    </div>
+  </body>
+  <script>
+    // 抓取盛裝查詢結果的div
+    let search_content = document.getElementById("search_result");
+    // 之後填入查詢到的結果
+    // search_content.innerHTML =
+    //   "JavaScript 程式取得查詢結果後，將資料顯⽰在會員⾴⾯中。";
+
+    // 搜尋函式
+    function searchMember() {
+      // 抓取input輸入的值
+      let username_search = document.getElementById("username_search").value;
+      // console.log(username_search);
+      // search_content.innerHTML = username_search;
+
+      let src = "http://127.0.0.1:3000/api/member?username=" + username_search;
+      fetch(src)
+        .then(function (response) {
+          // console.log(response);
+          return response.json();
+        })
+        .then(function (member_data) {
+          // console.log(member_data);
+          // data: {id: 2, name: 'Tom', username: 'apple', password: 'red',......
+          // input的值搜尋不到 => 代表fetch()連不到資料
+          search_content.innerHTML =
+            member_data.data.name + " ( " + member_data.data.username + " )";
+        })
+        // .catch(function (error) {
+        //   search_content.innerHTML = "無此會員";
+        // });
+        .catch((error) => {
+          search_content.innerHTML = "無此會員";
+        });
+      // 隱藏的框顯示
+      search_content.style.visibility = "visible";
+    }
+
+    function updateMember() {
+      // 抓取盛裝更新結果的div
+      let update_content = document.getElementById("update_result");
+
+      // 要先查詢姓名才有 username_search值
+      let username_search = document.getElementById("username_search").value;
+      let src = "http://127.0.0.1:3000/api/member?username=" + username_search;
+
+      // 更新的姓名資料
+      let name_update = document.getElementById("name_update").value;
+      // console.log(name_update);
+      fetch(src, {
+        method: "PATCH",
+        // json.stringify 把資料轉換成json字串型態
+        body: JSON.stringify({
+          data: {
+            name: name_update,
+          },
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          // 顯示更新成功
+          // console.log(data); // {OK: 'true'}
+          update_content.innerHTML = "更新成功";
+        })
+        .catch(function (error) {
+          update_content.innerHTML = "更新失敗";
+        });
+      update_content.style.visibility = "visible";
+
+      // 更新登入者姓名
+      let welcome_user = document.getElementById("welcome_user");
+      welcome_user.innerHTML = name_update + " ，歡迎登入系統";
+
+      // 點擊更新後，查詢結果隱藏
+      search_content.style.visibility = "hidden";
+    }
+  </script>
+</html>
